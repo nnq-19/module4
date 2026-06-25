@@ -1,0 +1,96 @@
+/* ==========================================================================
+   MÃ KHỞI ĐỘNG CƠ BẢN (Mặc định cho thiết bị di động - Mobile First)
+   ========================================================================== */
+* {
+    /* Đảm bảo kích thước width bao gồm cả padding và border, không bị phình to */
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f6f8;
+    color: #333;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Khung chứa tổng lớn */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* MẸO QUAN TRỌNG: font-size: 0 giúp triệt tiêu khoảng trắng thừa của inline-block */
+    font-size: 0; 
+}
+
+/* Định dạng cho các div ở Mobile (1 cột dọc) */
+div.card {
+    display: block; 
+    width: 100%;    
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    /* Trả lại font-size cho chữ bên trong thẻ div không bị mất */
+    font-size: 14px; 
+}
+
+div.card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2980b9;
+}
+
+/* Định dạng hình ảnh mặc định trên điện thoại */
+img {
+    width: 100%;
+    max-width: 100%; /* <== THÊM DÒNG NÀY: Chống tràn tuyệt đối */
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   TRUY VẤN PHƯƠNG TIỆN #1: CHẾ ĐỘ XEM MÁY TÍNH BẢNG (Từ 772px trở lên)
+   ========================================================================== */
+@media only screen and (min-width: 772px) {
+    /* Chuyển thành 2 cột nằm ngang */
+    div.card {
+        display: inline-block;
+        width: 46%;          /* Đặt kích thước an toàn */
+        margin: 2%;          /* Phép toán lề: 46% + 46% + (2% lề trái + 2% lề phải của mỗi hộp) = Vừa khít hàng */
+        vertical-align: top; /* Giữ các ô thẳng hàng tăm tắp từ mép trên */
+    }
+
+    /* Giới hạn hình ảnh không quá 30% chiều cao của màn hình thiết bị */
+    img {
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;   /* Cắt cúp ảnh tự động vừa vặn, không lo ảnh dọc hay ảnh ngang bị méo */
+    }
+}
+
+
+/* ==========================================================================
+   TRUY VẤN PHƯƠNG TIỆN #2: CHẾ ĐỘ XEM MÀN HÌNH LỚN (Từ 998px trở lên)
+   ========================================================================== */
+@media only screen and (min-width: 998px) {
+    /* Chuyển thành 3 cột nằm ngang thẳng hàng */
+    div.card {
+        width: 30%;          /* 30% x 3 hộp = 90% */
+        margin: 1.66%;       /* Khoảng cách trống cân bằng hoàn hảo giữa các hộp */
+    }
+    
+    /* Hình ảnh giữ nguyên tính chất thừa kế từ mốc 772px */
+}
